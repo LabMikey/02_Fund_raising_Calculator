@@ -28,5 +28,3 @@ get_cost = num_check("how much does it cost? $", "Please enter a number more tha
 
 print("You need: {}".format(get_int))
 print("It costs: ${}".format(get_cost))
-
-            
