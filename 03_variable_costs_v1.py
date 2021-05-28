@@ -31,6 +31,7 @@ def not_blank(question, error):
         return response
 
 
+# Currency formatting function
 def currency(x):
     return "${:.2f}".format(x)
 
