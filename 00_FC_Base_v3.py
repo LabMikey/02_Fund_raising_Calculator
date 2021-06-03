@@ -18,6 +18,22 @@ def num_check(question, error, num_type):
             print(error)
 
 
+def yes_no(question):
+  error = "please answer yes / no"
+
+  valid = False
+  while not valid:
+    # ask question and put response in lowercase
+    response = input(question).lower()
+
+    if response == "yes" or response == "y":
+      return "yes"
+    elif response == "no" or response == "n":
+      return "no"
+    else:
+        print(error)
+
+
 def not_blank(question, error):
 
     valid = False
@@ -61,8 +77,13 @@ def get_expenses(var_fixed):
         if item_name.lower() == "xxx":
             break
 
-        quantity = num_check("Quantity:",
+        if var_fixed == "variable":
+            quantity = num_check("Quantity:",
                             "The amount must be a whole nummber " "must be more than zero", int)
+
+        else:
+            quantity = 1
+
         price = num_check("How much for a single item? $",
                           "The price must be a number <more " "than 0>", float)
 
@@ -88,19 +109,53 @@ def get_expenses(var_fixed):
     return [expense_frame, sub_total]
 
 
+# Prints expense frames
+def expense_print(heading, frame, subtotal):
+    print()
+    print("**** {} Costs ****".format(heading))
+    print(frame)
+    print()
+    print("{} Costs: ${:.2f}".format(heading, subtotal))
+    return""
+
+
 # **** Main routine starts here ****
 
 # Get product name
 product_name = not_blank("Product name: ", "The product name can't be blank")
 
+print()
+print("Please enter your variable costs below...")
+# Get variable costs
 variable_expenses = get_expenses("variable")
 variable_frame = variable_expenses[0]
 variable_sub = variable_expenses[1]
 
+print()
+have_fixed = yes_no("Do you have fixed costs (y / n)? ")
+
+if have_fixed == "yes":
+    # Get fixed costs
+    fixed_expenses = get_expenses("fixed")
+    fixed_frame = fixed_expenses[0]
+    fixed_sub = fixed_expenses[1]
+else:
+    fixed_sub = 0
+
+# Find Total Costs
+
+# Ask user for profit goal
+
+# Calculate reccommended price
+
+# Write data to file
+
 # **** Printing Area *****
+
 print()
-print(variable_frame)
+print("**** Fund Raising - {} *****".format(product_name))
 print()
+expense_print("Variable", variable_frame, variable_sub)
 
-
-
+if have_fixed == "yes":
+    expense_print("Fixed", fixed_frame[['Cost']], fixed_sub)

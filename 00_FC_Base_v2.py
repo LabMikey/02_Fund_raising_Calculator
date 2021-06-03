@@ -61,8 +61,13 @@ def get_expenses(var_fixed):
         if item_name.lower() == "xxx":
             break
 
-        quantity = num_check("Quantity:",
+        if var_fixed == "variable":
+            quantity = num_check("Quantity:",
                             "The amount must be a whole nummber " "must be more than zero", int)
+
+        else:
+            quantity = 1
+
         price = num_check("How much for a single item? $",
                           "The price must be a number <more " "than 0>", float)
 
@@ -93,14 +98,32 @@ def get_expenses(var_fixed):
 # Get product name
 product_name = not_blank("Product name: ", "The product name can't be blank")
 
+# Get variable costs
 variable_expenses = get_expenses("variable")
 variable_frame = variable_expenses[0]
 variable_sub = variable_expenses[1]
 
+# Get fixed costs
+fixed_expenses = get_expenses("fixed")
+fixed_frame = fixed_expenses[0]
+fixed_sub = fixed_expenses[1]
+
+# FInd Total Costs
+
+# Ask user for profit goal
+
+# Calculate reccommended price
+
+# Write data to file
+
 # **** Printing Area *****
-print()
+print("**** Variable Costs ****")
 print(variable_frame)
 print()
 
+print("Variable Costs: ${:.2f}".format(variable_sub))
 
-
+print("**** Fixed Cost ****")
+print(fixed_frame[['Cost']])
+print()
+print("Fixed Costs: ${:.2f}".format(fixed_sub))
