@@ -68,7 +68,7 @@ def profit_goal(total_costs):
                 profit_type = "%"
 
         elif profit_type == "unknown" and amount < 100:
-            percent_type = yes_no("Do youy mean {}%? , y / n".format(amount))
+            percent_type = yes_no("Do you mean {}%? , y / n".format(amount))
             if percent_type == "yes":
                 profit_type = "%"
             else:
@@ -80,6 +80,7 @@ def profit_goal(total_costs):
         else:
             goal = (amount / 100) * total_costs
             return goal
+
 
 
 
