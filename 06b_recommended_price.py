@@ -36,3 +36,8 @@ print("Profit Goal: ${:.2f}".format(profit_goal))
 
 selling_price = sales_needed /how_many
 print("Selling Price (unrounded) : ${:.2f}".format(selling_price))
+
+recommended_price = round_up(selling_price, round_to)
+print("Recommended Price: ${:.2f}".format(recommended_price))
+
+
