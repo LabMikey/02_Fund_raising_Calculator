@@ -128,7 +128,7 @@ def expense_print(heading, frame, subtotal):
 
 
 # work out profit goal and total sales required
-def profit_goal(total_costs):
+def get_profit_goal(total_costs):
 
     # Intialise variable and error message
     error = "Please enter a valid profit goal\n"
@@ -195,24 +195,9 @@ def round_up(amount, round_to):
     return int(math.ceil(amount / round_to)) * round_to
 
 # Main routine starts here
-how_many = num_check("How many items? ", "Can't be 0", int)
+
 total = num_check("Total Costs? ", "More than 0", float)
-profit_goal = num_check("Profit Goal? ", "More than 0", float)
 round_to = num_check("Round to nearest...? ", "Can't be 0", int)
-
-sales_needed = total + profit_goal
-
-print("Total: ${:.2f}".format(total))
-print("Profit Goal: ${:.2f}".format(profit_goal))
-
-selling_price = sales_needed / how_many
-print("Selling Price (unrounded) : ${:.2f}".format(selling_price))
-
-recommended_price = round_up(selling_price, round_to)
-print("Recommended Price: ${:.2f}".format(recommended_price))
-
-
-# **** Main routine starts here ****
 
 # Get product name
 product_name = not_blank("Product name: ", "The product name can't be blank")
@@ -240,7 +225,7 @@ else:
 
 # work out total costs and profit target
 all_costs = variable_sub + fixed_sub
-profit_target = profit_goal(all_costs)
+profit_target = get_profit_goal(all_costs)
 
 # Calculate total sales needed to reach goal
 sales_needed = all_costs + profit_target
